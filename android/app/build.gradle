@@ -76,6 +76,9 @@ project.ext.react = [
     entryFile: "index.js"
 ]
 
+project.ext.react = [
+  entryFile: "artifacts/index.android.js"
+]
 apply from: "../../node_modules/react-native/react.gradle"
 
 /**
