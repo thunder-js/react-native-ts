@@ -72,12 +72,13 @@ import com.android.build.OutputFile
  * ]
  */
 
-project.ext.react = [
-    entryFile: "index.js"
-]
+// project.ext.react = [
+//     entryFile: "index.js"
+// ]
 
 project.ext.react = [
   entryFile: "artifacts/index.android.js"
+  cliPath: "node_modules/haul/bin/cli.js"
 ]
 apply from: "../../node_modules/react-native/react.gradle"
 

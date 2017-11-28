@@ -139,7 +139,7 @@ export default class App extends Component<Props & InjectedProps, State> {
         </Text>
         <RandomName
           namePool={['joao', 'rafael', 'jonas', 'paulo']}
-          color='steelblue'
+          color='green'
         />
       </View>
     )

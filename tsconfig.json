@@ -64,6 +64,7 @@
     "jest"
   ],
   "exclude": [
+    "webpack.haul.js",
     "android",
     "ios",
     "artifacts",

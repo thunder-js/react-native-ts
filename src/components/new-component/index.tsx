@@ -1,5 +1,4 @@
 import React from 'react'
-import { View, Text } from 'react-native'
 import Onboarding from 'storm-onboarding/src/Onboarding'
 
 const PAGES = [{
@@ -21,7 +20,7 @@ export const NewComponent = ({
     backgroundColor={'tomato'}
     pages={PAGES}
     logoSource={LOGO}
-    onFinish={() => {}}
+    onFinish={() => { console.log(age) }}
     onSkip={() => {}}
   />
 )
