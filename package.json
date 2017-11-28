@@ -14,8 +14,10 @@
 		"start:android": "npm run build && concurrently -r 'npm run watch' 'react-native run-android'"
 	},
 	"dependencies": {
+		"moment": "^2.19.2",
 		"react": "16.0.0",
-		"react-native": "0.50.4"
+		"react-native": "0.50.4",
+		"recompose": "^0.26.0"
 	},
 	"devDependencies": {
 		"@types/jest": "^21.1.8",
@@ -32,17 +34,17 @@
 		"typings": "^2.1.1"
 	},
 	"jest": {
-    "preset": "react-native",
-    "testRegex": "artifacts/.+\\.(test|spec).js$",
-    "coverageDirectory": "coverage",
-    "coverageReporters": [
-      "text-summary",
-      "html"
-    ],
-    "collectCoverageFrom": [
-      "artifacts/**/*.js",
-      "!artifacts/**/*.spec.js",
-      "!artifacts/**/*.index.js"
-    ]
-  }
+		"preset": "react-native",
+		"testRegex": "artifacts/.+\\.(test|spec).js$",
+		"coverageDirectory": "coverage",
+		"coverageReporters": [
+			"text-summary",
+			"html"
+		],
+		"collectCoverageFrom": [
+			"artifacts/**/*.js",
+			"!artifacts/**/*.spec.js",
+			"!artifacts/**/*.index.js"
+		]
+	}
 }
