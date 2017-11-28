@@ -1,15 +1,10 @@
 import React from 'react'
-import { View, Text, Image, StatusBar } from 'react-native'
-import moment from 'moment'
+import { View, Text } from 'react-native'
 
 export const Component = () => (
   <View>
     <Text>
-      <Image>
-        <StatusBar barStyle='light-content'>
-
-        </StatusBar>
-      </Image>
+      TS COMP HMR :)...
     </Text>
   </View>
 )

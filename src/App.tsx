@@ -135,7 +135,7 @@ export default class App extends Component<Props & InjectedProps, State> {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          Oh my god, TS!! {this.state.text}
+          Oh my god, TS!!HMR {this.state.text}
         </Text>
         <RandomName
           namePool={['joao', 'rafael', 'jonas', 'paulo']}
