@@ -1,5 +1,6 @@
 import React from 'react'
-import Onboarding from 'storm-onboarding/src/Onboarding'
+
+import { OnBoarding } from 'storm-onboarding'
 
 const PAGES = [{
   text: 'Texto1',
@@ -13,14 +14,21 @@ const PAGES = [{
 }]
 const LOGO = { uri: 'https://unsplash.it/300x400' }
 
-export const NewComponent = ({
-  age
-}) => (
-  <Onboarding
+{/* <OnBoarding
     backgroundColor={'tomato'}
     pages={PAGES}
     logoSource={LOGO}
     onFinish={() => { console.log(age) }}
+    onSkip={() => {}}
+  /> */}
+export const NewComponent = ({
+  age
+}) => (
+  <OnBoarding
+    backgroundColor='tomato'
+    pages={PAGES}
+    logoSource={LOGO}
+    onFinish={() => {}}
     onSkip={() => {}}
   />
 )

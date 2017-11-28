@@ -1,17 +1,13 @@
 import 'haul/hot/patch'
-import {makeHot, tryUpdateSelf, callOnce, clearCacheFor, redraw} from 'haul/hot'
-
 import React from 'react'
-import { AppRegistry, View } from 'react-native'
-// import App from './App'
-import { HelloWorld } from './Component'
+import {makeHot, tryUpdateSelf, callOnce, clearCacheFor, redraw} from 'haul/hot'
+import { AppRegistry } from 'react-native'
+import { App } from './App';
 
-export default class App extends React.Component {
+export default class Root extends React.Component {
   render() {
     return (
-      <View style={{marginTop: 22}}>
-        <HelloWorld />
-      </View>
+      <App />
     )
   }
 }
@@ -19,13 +15,13 @@ export default class App extends React.Component {
 tryUpdateSelf()
 
 callOnce(() => {
-  AppRegistry.registerComponent('TsPlayground', makeHot(() => App))
+  AppRegistry.registerComponent('TsPlayground', makeHot(() => Root))
 })
 
 if (module.hot) {
   module.hot.accept(() => {})
 
-  module.hot.accept(['./Component'], () => {
+  module.hot.accept(['./App'], () => {
     clearCacheFor(require.resolve('./index.js'))
     redraw(() => require('./index.js').default)
   })

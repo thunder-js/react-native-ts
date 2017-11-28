@@ -11,6 +11,7 @@ import {
   ViewStyle
 } from 'react-native'
 import { compose, withProps } from 'recompose'
+import { NewComponent } from './components/new-component/index'
 
 interface Options {
   upperCase: boolean
@@ -116,14 +117,14 @@ const DisplayName = ({
     </Text>
   )
 
-const RandomName = compose(
-  withRandomName({ upperCase: false, intervalMs: 200 }),
-  withProps({
-    x: 123
-  })
-)(DisplayName)
+// const RandomName = compose(
+//   withRandomName({ upperCase: false, intervalMs: 200 }),
+//   withProps({
+//     x: 123
+//   })
+// )(DisplayName)
 
-export default class App extends Component<Props & InjectedProps, State> {
+export class App extends Component<Props & InjectedProps, State> {
   constructor(props) {
     super(props)
     this.state = {
@@ -134,13 +135,7 @@ export default class App extends Component<Props & InjectedProps, State> {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Oh my god, TS!!HMR {this.state.text}
-        </Text>
-        <RandomName
-          namePool={['joao', 'rafael', 'jonas', 'paulo']}
-          color='green'
-        />
+        <NewComponent age={1} />
       </View>
     )
   }
