@@ -1,11 +1,11 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react-native';
-import { NewComponent } from './index';
+import { EnhancedComponent } from './index';
 
 storiesOf('NewComponent stories', module)
   .add('default', () => (
-    <NewComponent age={12} />
+    <EnhancedComponent age={12} />
   ))
   .add('old', () => (
-    <NewComponent age={12} />
+    <EnhancedComponent age={12} />
   ))

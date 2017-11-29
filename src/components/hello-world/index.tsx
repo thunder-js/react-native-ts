@@ -1,8 +1,5 @@
 import React from 'react'
 import { Text } from 'react-native'
-import moment from 'moment'
-
-const fn = () => moment().format('DD/MM/YYYY')
 
 export const HelloWorld = ({
   message
