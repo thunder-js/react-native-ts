@@ -1,7 +1,5 @@
 import React from 'react'
-import { ActivityIndicator, Text } from 'react-native'
-import { withLoading } from 'common-data/artifacts/hocs'
-import { compose, withProps } from 'recompose'
+import { compose } from 'recompose'
 import { Auth, ImageSource } from 'storm-auth/artifacts/components/Auth'
 import { withSignInFacebook, ISignInFacebookProps, ISignInFacebook } from 'storm-auth/artifacts/hocs/graphcool/sign-in-facebook'
 import { withSignInEmail, IWithSignInProps, ISignInEmail } from 'storm-auth/artifacts/hocs/graphcool/sign-in-email'
@@ -39,7 +37,15 @@ export class AuthScreen extends React.Component<{}, {}> {
           />
         }
         signUpContainer={
-          <SignIn onSuccessEmail={() => alert('ok')} onSuccessFacebook={() => alert('facebook')} />
+          <SignIn
+            onSuccessEmail={() => alert('ok')}
+            onSuccessFacebook={() => alert('facebook')}
+            emailImage={emailImage}
+            facebookImage={facebookImage}
+            passwordImage={passwordImage}
+            eyeOnImage={eyeOnImage}
+            eyeOffImage={eyeOffImage}
+          />
         }
       >
       </Auth>

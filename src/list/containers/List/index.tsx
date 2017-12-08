@@ -1,11 +1,21 @@
 import * as React from 'react'
+import { Text} from 'react-native'
 import gql from 'graphql-tag'
-import { graphql, OptionProps } from 'react-apollo'
+import { graphql, QueryProps } from 'react-apollo'
 import ListComponent from '../../components/List'
 import { compose } from 'recompose'
-import { withLoading, withApolloFetchState, IFetchState, withApolloFetchActions, IFetchActions } from 'common-data/artifacts/hocs'
-import { ActivityIndicator } from 'react-native'
 import R from 'ramda'
+import {
+  withLoading,
+  withPlaceholder,
+  withApolloFetchState,
+  IFetchState,
+  withApolloFetchActions,
+  IFetchActions,
+  withError
+} from 'common-data/artifacts/hocs'
+import { ActivityIndicator } from 'react-native'
+import { IListProps } from '../../components/List/index'
 
 export interface Pet {
   id: string
@@ -30,10 +40,10 @@ export interface InjectedProps {
 }
 
 export interface InputProps {
-
+  myInput: string
 }
 
-const listQuery = gql`
+const petsQuery = gql`
   {
     viewer {
       allPets {
@@ -52,22 +62,35 @@ const listQuery = gql`
 const mapEdgesToEntities = (edges: Array<Edge> | undefined) => edges ? edges.map(edge => edge.node) : []
 const getEntitiesFromEdgesSafely = (path: string[], data) => mapEdgesToEntities(R.pathOr([], path, data))
 
-const withPets = () => graphql<Response, InputProps, InjectedProps>(listQuery, {
-  options: {
-    notifyOnNetworkStatusChange: true
-  },
-  props: ({ data, ...otherProps }) => {
-    return {
-      ...otherProps,
-      data,
-      pets: getEntitiesFromEdgesSafely(['viewer', 'allPets', 'edges'], data)
+const withPets = () => graphql<Response, InputProps, InjectedProps>(petsQuery, {
+  options: ({ myInput }) => ({
+    notifyOnNetworkStatusChange: true,
+    variables: {
+      x: myInput
     }
-  }
+  }),
+  props: (props) => ({
+    ...props,
+    pets: getEntitiesFromEdgesSafely(['viewer', 'allPets', 'edges'], props.data)
+  })
 })
 
-export default compose(
+const Placeholder = () => (
+  <Text>Empty List</Text>
+)
+const Loading = () => (
+  <ActivityIndicator style={{marginTop: 20}}/>
+)
+
+const ErrorComponent = () => (
+  <Text>Error!</Text>
+)
+
+export default compose<IFetchActions & IFetchState & IListProps, InputProps>(
   withPets(),
-  withApolloFetchState(),
+  withError<QueryProps>((props) => !!props.error, ErrorComponent),
   withApolloFetchActions(),
-  withLoading((props: IFetchState) => props.fetchState.initialLoading, () => <ActivityIndicator style={{marginTop: 20}}/>)
+  withApolloFetchState(),
+  withLoading<IFetchState>((props) => props.fetchState.initialLoading, Loading),
+  withPlaceholder<IListProps>((props) => !props.pets || !props.pets.length, Placeholder)
 )(ListComponent)
