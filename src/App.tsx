@@ -35,9 +35,9 @@ export class App extends Component<IAppProps, IAppState> {
     return (
       <ApolloProvider client={apolloClient}>
         <View style={styles.container}>
-          {/* <AuthScreen /> */}
+          <AuthScreen />
           {/* <OnBoardingScreen /> */}
-          <List myInput={'abc'} />
+          {/* <List myInput={'abc'} /> */}
         </View>
       </ApolloProvider>
     )
