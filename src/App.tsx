@@ -10,9 +10,11 @@ import { ApolloProvider } from 'react-apollo'
 import createApolloClient from 'storm-system-components/src/apollo'
 import { OnBoardingScreen } from './components/onboarding/index'
 import List from './list/containers/List'
+import AllEvents from './modules/events/containers/AllEvents'
 
-const SAVEBOB_STAGING = 'https://api.graph.cool/relay/v1/cj8xwxn5x0bxl016415wlh0v8'
-const PRODUCTION_URL = SAVEBOB_STAGING
+const BROCHALLENGE_DEV = 'http://localhost:60000/relay/v1/cjbif011e000201887rzszrtr'
+const BROCHALLENGE_STAGING = 'https://api.graph.cool/relay/v1/cjbi3txqv0reu0121coxa0nsa'
+const PRODUCTION_URL = BROCHALLENGE_DEV
 
 const apolloClient = createApolloClient({
   config: {
@@ -35,9 +37,10 @@ export class App extends Component<IAppProps, IAppState> {
     return (
       <ApolloProvider client={apolloClient}>
         <View style={styles.container}>
-          <AuthScreen />
+          {/* <AuthScreen /> */}
           {/* <OnBoardingScreen /> */}
           {/* <List myInput={'abc'} /> */}
+          <AllEvents />
         </View>
       </ApolloProvider>
     )
