@@ -8,7 +8,7 @@ const Loading = () => (
 const styles = StyleSheet.create({
   loading: {
 
-  } as ViewStyle
+  } as ViewStyle,
 })
 
 export default Loading

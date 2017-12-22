@@ -1,17 +1,21 @@
 import React from 'react'
-import { View, Text, StyleSheet, ViewStyle, TextStyle } from 'react-native'
+import { View, Text, StyleSheet, ViewStyle, TextStyle, TouchableOpacity } from 'react-native'
 
 export interface IAllEventsListItemProps {
   id: string;
   name: string;
   location: string;
+  onPress: () => void;
 }
 
 const AllEventsListItem: React.SFC<IAllEventsListItemProps> = ({
-  id
+  id,
+  onPress,
 }) => (
   <View style={styles.container}>
-    <Text style={styles.text}>{id}</Text>
+    <TouchableOpacity onPress={onPress}>
+      <Text style={styles.text}>{id}</Text>
+    </TouchableOpacity>
   </View>
 )
 
@@ -21,7 +25,7 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   text: {
 
-  } as TextStyle
+  } as TextStyle,
 })
 
 export default AllEventsListItem

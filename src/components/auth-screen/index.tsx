@@ -1,11 +1,11 @@
 import React from 'react'
 import { compose } from 'recompose'
 import { AuthBook } from 'storm-auth/artifacts/components/AuthBook'
-import { ImageSource, ISignInFacebookProps,ISignInEmailProps, ISignUpProps } from 'storm-auth/artifacts/types'
+import { ImageSource, ISignInFacebookProps, ISignInEmailProps } from 'storm-auth/artifacts/types'
 import { withSignInFacebook, IWithSignInFacebookProps } from 'storm-auth/artifacts/hocs/graphcool/sign-in-facebook'
 import { withSignInEmail, IWithSignInEmailProps } from 'storm-auth/artifacts/hocs/graphcool/sign-in-email'
 import { SignInForm, ISignInFormProps } from 'storm-auth/artifacts/components/SignInForm'
-import { AsyncStorage, View } from 'react-native'
+import { AsyncStorage } from 'react-native'
 import { withSignUp } from 'storm-auth/src/hocs/graphcool/sign-up'
 import { ISignUpFormProps, SignUpForm } from 'storm-auth/src/components/SignUpForm'
 import ForgotPasswordRequestForm from '../../../../storm-auth/artifacts/components/ForgotPasswordRequestForm'
@@ -35,7 +35,7 @@ const signInAssets = {
 }
 
 const forgotPasswordAssets = {
-  email: emailImage
+  email: emailImage,
 }
 
 const SignIn = compose<ISignInFacebookProps & ISignInEmailProps, IWithSignInEmailProps & IWithSignInFacebookProps & ISignInFormProps>(

@@ -1,38 +1,43 @@
-import { graphql, QueryProps } from 'react-apollo'
-import { compose } from 'recompose'
+import { QueryProps } from 'react-apollo'
+import { compose, withHandlers } from 'recompose'
 import { withPlaceholder, withApolloFetchState, withApolloFetchActions, withError, IFetchState, IFetchActions, withLoading } from 'common-data/artifacts/hocs'
-import { getEntitiesFromEdgesSafely } from 'common-data/artifacts/logic/relay'
-import { allEventsQuery as IAllEventsQuery } from '../../../../operation-result-types'
 
 import ErrorComponent from '../../../global/components/Error'
 import ListPlaceholder from '../../../global/components/ListPlaceholder'
 import Loading from '../../../global/components/Loading'
 
-import allEventsQuery from '../../../events/queries/all-events';
-import AllEventsList from '../../components/AllEventsList'
-import { IAllEventsListProps } from '../../components/AllEventsList/index'
+import AllEventsList, { IEvent } from '../../components/AllEventsList'
 
-export interface InputProps {
-  
+import withAllEvents from '../../hocs/with-all-events';
+import withDeleteEvent from '../../hocs/with-delete-event'
+import { IWithAllEventsWrappedProps } from '../../hocs/with-all-events'
+
+interface OuterProps {}
+type WrappedProps = IFetchActions & IFetchState & {
+  allEvents: IEvent[],
+  onPressEvent: (event: Event) => void,
 }
 
-export type IWithAllEventsProps = QueryProps & IAllEventsListProps
+export interface IHandlers {
+  onPressEvent: (event: IEvent) => void
+}
 
-const withAllEvents = graphql<IAllEventsQuery, InputProps, IWithAllEventsProps>(allEventsQuery, {
-  options: () => ({
-    notifyOnNetworkStatusChange: true,
-  }),
-  props: (props) => ({
-    ...props,
-    allEvents: getEntitiesFromEdgesSafely(['viewer', 'allEvents', 'edges'], props.data)
-  })
-})
+const isError = (props) => !!props.error
+const isLoading = (props) => props.fetchState.initialLoading
+const isEmpty = (props) => !props.allEvents || !props.allEvents.length
 
-export default compose<IFetchActions & IFetchState & IAllEventsListProps, InputProps>(
+export default compose<WrappedProps, OuterProps>(
+  //  Apollo
   withAllEvents,
-  withError<QueryProps>((props) => !!props.error, ErrorComponent),
+  withDeleteEvent,
+  //  Handlers
+  withHandlers({
+    onPressEvent: ({ deleteEvent }) => (event: IEvent) => deleteEvent(event.id),
+  }),
+  //  Data
   withApolloFetchActions(),
   withApolloFetchState(),
-  withLoading<IFetchState>((props) => props.fetchState.initialLoading, Loading),
-  withPlaceholder<IAllEventsListProps>((props) => !props.allEvents || !props.allEvents.length, ListPlaceholder)
+  withError<QueryProps>(isError, ErrorComponent),
+  withLoading<IFetchState>(isLoading, Loading),
+  withPlaceholder<IWithAllEventsWrappedProps>(isEmpty, ListPlaceholder),
 )(AllEventsList)

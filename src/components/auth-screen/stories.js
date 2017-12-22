@@ -8,4 +8,4 @@ storiesOf('NewComponent stories', module)
   ))
   .add('old', () => (
     <EnhancedComponent age={12} />
-  ))
+  ));

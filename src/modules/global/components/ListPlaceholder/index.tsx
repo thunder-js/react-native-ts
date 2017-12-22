@@ -8,5 +8,5 @@ export default () => (
 const styles = StyleSheet.create({
   text: {
 
-  } as ViewStyle
+  } as ViewStyle,
 })

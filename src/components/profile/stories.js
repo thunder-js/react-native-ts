@@ -4,5 +4,5 @@ import { Profile } from './index';
 
 storiesOf('Profile Component', module)
   .add('placehold', () => (
-    <Profile avatarUrl="https://api.adorable.io/avatars/285/abott@adorable.png" name="Rafael" />
-  ))
+    <Profile avatarUrl='https://api.adorable.io/avatars/285/abott@adorable.png' name='Rafael' />
+  ));
