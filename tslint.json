@@ -12,11 +12,13 @@
     "no-unused-variable": [ true, { "ignore-pattern": "^React$" } ],
     "semicolon": false,
     "no-var-requires":false,
-    "no-implicit-dependencies": false
+    "no-implicit-dependencies": false,
+    "no-object-literal-type-assertion": false
   },
   "jsRules": {
     "curly": true,
-    "quotemark": [true, "single", "avoid-escape"]
+    "quotemark": [true, "single", "avoid-escape"],
+    "semicolon": false
   },
   "rulesDirectory": []
 }
