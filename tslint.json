@@ -9,7 +9,7 @@
     "max-line-length": [false],
     "eofline": true,
     "member-ordering": [false],
-    "no-unused-variable": [true, {"ignore-pattern": "^React$"}],
+    "no-unused-variable": [ true, { "ignore-pattern": "^React$" } ],
     "semicolon": false,
     "no-var-requires":false,
     "no-implicit-dependencies": false
