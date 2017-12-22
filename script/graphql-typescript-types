@@ -1,0 +1,6 @@
+#!/bin/bash
+
+set -euxo pipefail
+
+# Flow
+apollo-codegen generate src/**/*.ts --schema src/schema.json --target typescript --output src/operation-result-types.ts --addTypename

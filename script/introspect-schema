@@ -1,0 +1,5 @@
+#!/bin/bash
+
+set -euxo pipefail
+
+apollo-codegen introspect-schema http://localhost:60000/relay/v1/cjbif011e000201887rzszrtr --output ./src/schema.json

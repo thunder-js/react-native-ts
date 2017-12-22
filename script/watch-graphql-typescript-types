@@ -1,0 +1,15 @@
+#!/bin/bash
+set -euxo pipefail
+
+./script/introspect-schema
+./script/graphql-typescript-types
+
+while true; do
+  watchman-wait ./src
+  RESULT=$?
+  if [[ $RESULT -ne 0 ]]; then
+    break
+  fi
+  sleep 0.5
+  ./script/graphql-typescript-types.sh
+done
