@@ -23,7 +23,6 @@
     "react-apollo": "^2.0.1",
     "react-native": "0.50.4",
     "recompose": "^0.26.0",
-    "storm-onboarding": "^0.0.4",
     "styled-components": "^2.2.3"
   },
   "devDependencies": {
