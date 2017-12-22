@@ -22,14 +22,7 @@ const apolloClient = createApolloClient({
   },
 })
 
-export interface IAppProps {
-
-}
-export interface IAppState {
-
-}
-
-export class App extends Component<IAppProps, IAppState> {
+export class App extends Component<{}, {}> {
   public render() {
     return (
       <ApolloProvider client={apolloClient}>

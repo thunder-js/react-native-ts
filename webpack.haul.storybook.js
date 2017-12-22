@@ -4,8 +4,8 @@ module.exports = ({ platform }, { module, resolve }) => ({
     ...module,
     rules: [
       {
-        test: /\.tsx?$/,
         loader: 'ts-loader',
+        test: /\.tsx?$/,
       },
       ...module.rules,
     ],

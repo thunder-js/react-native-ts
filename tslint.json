@@ -13,7 +13,8 @@
     "semicolon": false,
     "no-var-requires":false,
     "no-implicit-dependencies": false,
-    "no-object-literal-type-assertion": false
+    "no-object-literal-type-assertion": false,
+    "no-submodule-imports": [true, "common-data", "storm-onboarding", "storm-auth", "storm-system-components"]
   },
   "jsRules": {
     "curly": true,

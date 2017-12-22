@@ -6,15 +6,11 @@ import {
   deleteEventMutation as IDeleteEventMutation,
 } from '../../../operation-result-types'
 
-export interface IWithDeleteEventOuterProps {
-
-}
-
 export interface IWithDeleteEventWrappedProps {
   deleteEvent: (id: string) => Promise<any>
 }
 
-export default graphql<IDeleteEventMutation, IWithDeleteEventOuterProps, IWithDeleteEventWrappedProps>(deleteEvent, {
+export default graphql<IDeleteEventMutation, {}, IWithDeleteEventWrappedProps>(deleteEvent, {
   props: ({ mutate }) => ({
     deleteEvent: async (id) => {
       if (!mutate) { return }
@@ -34,7 +30,7 @@ export default graphql<IDeleteEventMutation, IWithDeleteEventOuterProps, IWithDe
            */
           update: (store, { data: { deleteEvent } }) => {
             const data = store.readQuery<allEventsQuery>({ query: allEvents })
-            //	Do your magic
+            //  Do your magic
             const edges = data.viewer.allEvents.edges
             const newEdges = edges && edges.filter((edge) => edge && edge.node.id !== id)
             data.viewer.allEvents.edges = newEdges

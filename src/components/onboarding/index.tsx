@@ -19,8 +19,8 @@ export class OnBoardingScreen extends React.Component<{}, {}> {
       <OnBoarding
         pages={PAGES}
         logoSource={LOGO}
-        onFinish={() => {}}
-        onSkip={() => {}}
+        onFinish={() => null}
+        onSkip={() => null}
         backgroundColor='tomato'
       />
     )

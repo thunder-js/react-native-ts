@@ -52,7 +52,7 @@ export class AuthScreen extends React.Component<{}, {}> {
         closeImageSource={closeImageSource}
         backgroundImageSource={{uri: 'https://lorempixel.com/750/1334'}}
         logoSource={{uri: 'https://generatepress.com/assets/logo-white-asset.png'}}
-        onClose={() => {}}>
+        onClose={() => null}>
         {(goToPage) => (
           [<SignIn
             onSuccessEmail={async (response) => {
@@ -76,7 +76,7 @@ export class AuthScreen extends React.Component<{}, {}> {
           />,
           <ForgotPasswordRequestForm
             loadingForgotPasswordRequest={false}  //  TODO
-            forgotPasswordRequest={async () => {}}  //  TODO
+            forgotPasswordRequest={async () => null}  //  TODO
             assets={forgotPasswordAssets}
             onPressSignIn={() => goToPage(0)}
           />]

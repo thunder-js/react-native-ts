@@ -8,25 +8,19 @@ import Loading from '../../../global/components/Loading'
 
 import AllEventsList, { IEvent } from '../../components/AllEventsList'
 
-import withAllEvents from '../../hocs/with-all-events';
+import withAllEvents, { IWithAllEventsWrappedProps } from '../../hocs/with-all-events';
 import withDeleteEvent from '../../hocs/with-delete-event'
-import { IWithAllEventsWrappedProps } from '../../hocs/with-all-events'
 
-interface OuterProps {}
 type WrappedProps = IFetchActions & IFetchState & {
   allEvents: IEvent[],
   onPressEvent: (event: Event) => void,
-}
-
-export interface IHandlers {
-  onPressEvent: (event: IEvent) => void
 }
 
 const isError = (props) => !!props.error
 const isLoading = (props) => props.fetchState.initialLoading
 const isEmpty = (props) => !props.allEvents || !props.allEvents.length
 
-export default compose<WrappedProps, OuterProps>(
+export default compose<WrappedProps, {}>(
   //  Apollo
   withAllEvents,
   withDeleteEvent,
