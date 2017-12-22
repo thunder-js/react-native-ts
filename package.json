@@ -8,9 +8,10 @@
     "start:ios": "yarn haul start --platform ios",
     "start:android": "npm run build && concurrently -r 'npm run watch' 'react-native run-android'",
     "build:watch": "npm run watch",
-    "storybook": "storybook start -p 7007 -c artifacts/storybook",
+    "storybook": "storybook start -p 7007 --haul webpack.haul.storybook.js --platform ios",
     "postinstall": "yarn link common-data storm-onboarding storm-auth storm-system-components",
-    "watch-types": "./script/watch-graphql-typescript-types"
+    "watch-types": "./script/watch-graphql-typescript-types",
+    "lint-fix": "tslint --fix --project ./tsconfig.json --config ./tslint.json"
   },
   "dependencies": {
     "apollo-client": "^2.0.3",
