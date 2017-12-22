@@ -51,7 +51,7 @@ export class AuthScreen extends React.Component<{}, {}> {
       <AuthBook
         closeImageSource={closeImageSource}
         backgroundImageSource={{uri: 'https://lorempixel.com/750/1334'}}
-        logoSource={{uri: 'https://lorempixel.com/400/400/'}}
+        logoSource={{uri: 'https://generatepress.com/assets/logo-white-asset.png'}}
         onClose={() => {}}>
         {(goToPage) => (
           [<SignIn
