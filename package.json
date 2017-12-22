@@ -9,7 +9,8 @@
     "start:android": "npm run build && concurrently -r 'npm run watch' 'react-native run-android'",
     "build:watch": "npm run watch",
     "storybook": "storybook start -p 7007 -c artifacts/storybook",
-    "postinstall": "yarn link common-data storm-onboarding storm-auth storm-system-components"
+    "postinstall": "yarn link common-data storm-onboarding storm-auth storm-system-components",
+    "watch-types": "./script/watch-graphql-typescript-types"
   },
   "dependencies": {
     "apollo-client": "^2.0.3",
