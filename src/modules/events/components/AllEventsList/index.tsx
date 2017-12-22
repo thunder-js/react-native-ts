@@ -3,37 +3,53 @@ import { View, FlatList, StyleSheet, ViewStyle } from 'react-native'
 import { IFetchState, IFetchActions } from 'common-data/artifacts/hocs'
 import AllEventsListItem from '../AllEventsListItem'
 
+export interface IEvent {
+  id: string,
+  name: string,
+  location: string,
+}
 export interface IAllEventsListProps {
-  allEvents: Array<{
-    id: string,
-    name: string,
-    location: string,
-  }>
+  allEvents: IEvent[],
+  onPressEvent: (event: Event) => void
 }
 
-const keyExtractor = ({ id }) => id
-const renderItem = ({item}) => <AllEventsListItem {...item} />
+class AllEventsList extends React.Component<IFetchActions & IFetchState & IAllEventsListProps> {
+  private keyExtractor = ({ id }) => id
 
-const AllEventsList: React.SFC<IFetchActions & IFetchState & IAllEventsListProps> = ({
-  fetchState,
-  fetchActions,
-  allEvents
-})	=> (
-  <View style={styles.container}>
-    <FlatList
-      data={allEvents}
-      keyExtractor={keyExtractor}
-      renderItem={renderItem}
-      onRefresh={fetchActions.refetch}
-      refreshing={fetchState.activelyRefetching}
-    />
-  </View>
-)
+  private renderItem = ({ item }) => {
+    const { onPressEvent } = this.props
+
+    return (
+      <AllEventsListItem
+        onPress={() => onPressEvent(item)}
+        {...item}
+      />
+    )
+  }
+  public render() {
+    const {
+      fetchState,
+      fetchActions,
+      allEvents,
+    } = this.props
+    return (
+      <View style={styles.container}>
+        <FlatList
+          data={allEvents}
+          keyExtractor={this.keyExtractor}
+          renderItem={this.renderItem}
+          onRefresh={fetchActions.refetch}
+          refreshing={fetchState.activelyRefetching}
+        />
+      </View>
+    )
+  }
+}
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
-  } as ViewStyle
+    flex: 1,
+  } as ViewStyle,
 })
 
 export default AllEventsList
