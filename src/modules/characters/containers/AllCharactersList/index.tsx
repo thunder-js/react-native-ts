@@ -6,32 +6,30 @@ import ErrorComponent from '../../../global/components/Error'
 import ListPlaceholder from '../../../global/components/ListPlaceholder'
 import Loading from '../../../global/components/Loading'
 
-import AllEventsList, { IEvent } from '../../components/AllEventsList'
+import AllCharactersList, { IEntity } from '../../components/AllCharactersList'
 
-import withAllEvents, { IWithAllEventsWrappedProps } from '../../hocs/with-all-events';
-import withDeleteEvent from '../../hocs/with-delete-event'
+import withAllCharactersList, { IWithAllCharactersWrappedProps } from '../../hocs/with-all-characters';
 
 type WrappedProps = IFetchActions & IFetchState & {
-  allEvents: IEvent[],
-  onPressItem: (event: IEvent) => void,
+  allCharacters: IEntity[],
+  onPressItem: (event: IEntity) => void,
 }
 
 const isError = (props) => !!props.error
 const isLoading = (props) => props.fetchState.initialLoading
-const isEmpty = (props) => !props.allEvents || !props.allEvents.length
+const isEmpty = (props) => !props.allCharacters || !props.allCharacters.length
 
 export default compose<WrappedProps, {}>(
   //  Apollo
-  withAllEvents,
-  withDeleteEvent,
+  withAllCharactersList,
   //  Handlers
   withHandlers({
-    onPressItem: ({ deleteEvent }) => (event: IEvent) => deleteEvent(event.id),
+    onPressItem: () => (item: IEntity) => null,
   }),
   //  Data
   withApolloFetchActions(),
   withApolloFetchState(),
   withError<QueryProps>(isError, ErrorComponent),
   withLoading<IFetchState>(isLoading, Loading),
-  withPlaceholder<IWithAllEventsWrappedProps>(isEmpty, ListPlaceholder),
-)(AllEventsList)
+  withPlaceholder<IWithAllCharactersWrappedProps>(isEmpty, ListPlaceholder),
+)(AllCharactersList)

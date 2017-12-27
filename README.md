@@ -7,9 +7,10 @@ Just a simple starter kit :)
 - [ ] Waypoint with storm-foundation
 - [ ] Authentication with storm-auth
 - [ ] OnBoarding with storm-onboarding
-- [ ] Apollo and Redux with storm-system-components
+- [ ] Apollo 2.0 and Redux with storm-system-components
 - [ ] Fastlane
 - [ ] Code Push
 - [ ] Detox
+- [ ] Apollo codegen
 
 *More...*

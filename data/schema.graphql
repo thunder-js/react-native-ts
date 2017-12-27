@@ -1,0 +1,2100 @@
+input AddToEventDrinksEventInput {
+  drinksDrinkId: ID!
+  eventEventId: ID!
+  clientMutationId: String!
+}
+
+type AddToEventDrinksPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  eventEvent: Event
+  drinksDrink: Drink
+  eventEventEdge: EventEdge
+  drinksDrinkEdge: DrinkEdge
+}
+
+type AddToEventOwnerPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  ownerUser: User
+  createdEventsEvent: Event
+  ownerUserEdge: UserEdge
+  createdEventsEventEdge: EventEdge
+}
+
+input AddToEventOwnerUserInput {
+  createdEventsEventId: ID!
+  ownerUserId: ID!
+  clientMutationId: String!
+}
+
+input AddToEventParticipantsEventInput {
+  participantsParticipantId: ID!
+  eventEventId: ID!
+  clientMutationId: String!
+}
+
+type AddToEventParticipantsPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  eventEvent: Event
+  participantsParticipant: Participant
+  eventEventEdge: EventEdge
+  participantsParticipantEdge: ParticipantEdge
+}
+
+input AddToParticipanDrinksDrinkInput {
+  drinkedByParticipantsParticipantId: ID!
+  drinkedDrinkId: ID!
+  clientMutationId: String!
+}
+
+type AddToParticipanDrinksPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  drinkedDrink: Drink
+  drinkedByParticipantsParticipant: Participant
+  drinkedDrinkEdge: DrinkEdge
+  drinkedByParticipantsParticipantEdge: ParticipantEdge
+}
+
+input AddToParticipantCharacterParticipantInput {
+  currentCharacterCharacterId: ID!
+  participantsParticipantId: ID!
+  clientMutationId: String!
+}
+
+type AddToParticipantCharacterPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  participantsParticipant: Participant
+  currentCharacterCharacter: Character
+  participantsParticipantEdge: ParticipantEdge
+  currentCharacterCharacterEdge: CharacterEdge
+}
+
+type AddToParticipantSungsPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  madeSungsSung: Sung
+  participantsParticipant: Participant
+  madeSungsSungEdge: SungEdge
+  participantsParticipantEdge: ParticipantEdge
+}
+
+input AddToParticipantSungsSungInput {
+  participantsParticipantId: ID!
+  madeSungsSungId: ID!
+  clientMutationId: String!
+}
+
+type AddToUserParticipantsPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  userUser: User
+  participantsParticipant: Participant
+  userUserEdge: UserEdge
+  participantsParticipantEdge: ParticipantEdge
+}
+
+input AddToUserParticipantsUserInput {
+  participantsParticipantId: ID!
+  userUserId: ID!
+  clientMutationId: String!
+}
+
+type Character implements Node {
+  description: String @fake(type:lorem)
+  facebookProfileUrl: String @fake(type:url)
+  id: ID!
+  imageUrl: String @fake(type:imageUrl)
+  name: String @fake(type:fullName)
+  participants(filter: ParticipantFilter, orderBy: ParticipantOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): ParticipantConnection
+  points: Int
+}
+
+# A connection to a list of items.
+type CharacterConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [CharacterEdge]
+
+  # Count of filtered result set without considering pagination arguments
+  count: Int!
+}
+
+# An edge in a connection.
+type CharacterEdge {
+  # The item at the end of the edge.
+  node: Character!
+
+  # A cursor for use in pagination.
+  cursor: String!
+}
+
+input CharacterFilter {
+  # Logical AND on all given filters.
+  AND: [CharacterFilter!]
+
+  # Logical OR on all given filters.
+  OR: [CharacterFilter!]
+  description: String
+
+  # All values that are not equal to given value.
+  description_not: String
+
+  # All values that are contained in given list.
+  description_in: [String!]
+
+  # All values that are not contained in given list.
+  description_not_in: [String!]
+
+  # All values less than the given value.
+  description_lt: String
+
+  # All values less than or equal the given value.
+  description_lte: String
+
+  # All values greater than the given value.
+  description_gt: String
+
+  # All values greater than or equal the given value.
+  description_gte: String
+
+  # All values containing the given string.
+  description_contains: String
+
+  # All values not containing the given string.
+  description_not_contains: String
+
+  # All values starting with the given string.
+  description_starts_with: String
+
+  # All values not starting with the given string.
+  description_not_starts_with: String
+
+  # All values ending with the given string.
+  description_ends_with: String
+
+  # All values not ending with the given string.
+  description_not_ends_with: String
+  facebookProfileUrl: String
+
+  # All values that are not equal to given value.
+  facebookProfileUrl_not: String
+
+  # All values that are contained in given list.
+  facebookProfileUrl_in: [String!]
+
+  # All values that are not contained in given list.
+  facebookProfileUrl_not_in: [String!]
+
+  # All values less than the given value.
+  facebookProfileUrl_lt: String
+
+  # All values less than or equal the given value.
+  facebookProfileUrl_lte: String
+
+  # All values greater than the given value.
+  facebookProfileUrl_gt: String
+
+  # All values greater than or equal the given value.
+  facebookProfileUrl_gte: String
+
+  # All values containing the given string.
+  facebookProfileUrl_contains: String
+
+  # All values not containing the given string.
+  facebookProfileUrl_not_contains: String
+
+  # All values starting with the given string.
+  facebookProfileUrl_starts_with: String
+
+  # All values not starting with the given string.
+  facebookProfileUrl_not_starts_with: String
+
+  # All values ending with the given string.
+  facebookProfileUrl_ends_with: String
+
+  # All values not ending with the given string.
+  facebookProfileUrl_not_ends_with: String
+  id: ID
+
+  # All values that are not equal to given value.
+  id_not: ID
+
+  # All values that are contained in given list.
+  id_in: [ID!]
+
+  # All values that are not contained in given list.
+  id_not_in: [ID!]
+
+  # All values less than the given value.
+  id_lt: ID
+
+  # All values less than or equal the given value.
+  id_lte: ID
+
+  # All values greater than the given value.
+  id_gt: ID
+
+  # All values greater than or equal the given value.
+  id_gte: ID
+
+  # All values containing the given string.
+  id_contains: ID
+
+  # All values not containing the given string.
+  id_not_contains: ID
+
+  # All values starting with the given string.
+  id_starts_with: ID
+
+  # All values not starting with the given string.
+  id_not_starts_with: ID
+
+  # All values ending with the given string.
+  id_ends_with: ID
+
+  # All values not ending with the given string.
+  id_not_ends_with: ID
+  imageUrl: String
+
+  # All values that are not equal to given value.
+  imageUrl_not: String
+
+  # All values that are contained in given list.
+  imageUrl_in: [String!]
+
+  # All values that are not contained in given list.
+  imageUrl_not_in: [String!]
+
+  # All values less than the given value.
+  imageUrl_lt: String
+
+  # All values less than or equal the given value.
+  imageUrl_lte: String
+
+  # All values greater than the given value.
+  imageUrl_gt: String
+
+  # All values greater than or equal the given value.
+  imageUrl_gte: String
+
+  # All values containing the given string.
+  imageUrl_contains: String
+
+  # All values not containing the given string.
+  imageUrl_not_contains: String
+
+  # All values starting with the given string.
+  imageUrl_starts_with: String
+
+  # All values not starting with the given string.
+  imageUrl_not_starts_with: String
+
+  # All values ending with the given string.
+  imageUrl_ends_with: String
+
+  # All values not ending with the given string.
+  imageUrl_not_ends_with: String
+  name: String
+
+  # All values that are not equal to given value.
+  name_not: String
+
+  # All values that are contained in given list.
+  name_in: [String!]
+
+  # All values that are not contained in given list.
+  name_not_in: [String!]
+
+  # All values less than the given value.
+  name_lt: String
+
+  # All values less than or equal the given value.
+  name_lte: String
+
+  # All values greater than the given value.
+  name_gt: String
+
+  # All values greater than or equal the given value.
+  name_gte: String
+
+  # All values containing the given string.
+  name_contains: String
+
+  # All values not containing the given string.
+  name_not_contains: String
+
+  # All values starting with the given string.
+  name_starts_with: String
+
+  # All values not starting with the given string.
+  name_not_starts_with: String
+
+  # All values ending with the given string.
+  name_ends_with: String
+
+  # All values not ending with the given string.
+  name_not_ends_with: String
+  points: Int
+
+  # All values that are not equal to given value.
+  points_not: Int
+
+  # All values that are contained in given list.
+  points_in: [Int!]
+
+  # All values that are not contained in given list.
+  points_not_in: [Int!]
+
+  # All values less than the given value.
+  points_lt: Int
+
+  # All values less than or equal the given value.
+  points_lte: Int
+
+  # All values greater than the given value.
+  points_gt: Int
+
+  # All values greater than or equal the given value.
+  points_gte: Int
+  participants_every: ParticipantFilter
+  participants_some: ParticipantFilter
+  participants_none: ParticipantFilter
+}
+
+enum CharacterOrderBy {
+  description_ASC
+  description_DESC
+  facebookProfileUrl_ASC
+  facebookProfileUrl_DESC
+  id_ASC
+  id_DESC
+  imageUrl_ASC
+  imageUrl_DESC
+  name_ASC
+  name_DESC
+  points_ASC
+  points_DESC
+}
+
+input CharacterparticipantsParticipant {
+  score: Int!
+  eventId: ID
+  event: ParticipanteventEvent
+  userId: ID
+  user: ParticipantuserUser
+  drinkedIds: [ID!]
+  drinked: [ParticipantdrinkedDrink!]
+  madeSungsIds: [ID!]
+  madeSungs: [ParticipantmadeSungsSung!]
+}
+
+input CreateCharacter {
+  description: String
+  facebookProfileUrl: String
+  imageUrl: String
+  name: String
+  points: Int
+  participantsIds: [ID!]
+  participants: [CharacterparticipantsParticipant!]
+}
+
+input CreateCharacterInput {
+  description: String
+  facebookProfileUrl: String
+  imageUrl: String
+  name: String
+  points: Int
+  participantsIds: [ID!]
+  participants: [CharacterparticipantsParticipant!]
+  clientMutationId: String!
+}
+
+type CreateCharacterPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  character: Character
+  edge: CharacterEdge
+}
+
+input CreateDrink {
+  imageUrl: String
+  name: String
+  points: Int!
+  eventId: ID
+  event: DrinkeventEvent
+  drinkedByParticipantsIds: [ID!]
+  drinkedByParticipants: [DrinkdrinkedByParticipantsParticipant!]
+}
+
+input CreateDrinkInput {
+  imageUrl: String
+  name: String
+  points: Int!
+  eventId: ID
+  event: DrinkeventEvent
+  drinkedByParticipantsIds: [ID!]
+  drinkedByParticipants: [DrinkdrinkedByParticipantsParticipant!]
+  clientMutationId: String!
+}
+
+type CreateDrinkPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  drink: Drink
+  edge: DrinkEdge
+  event: Event
+}
+
+input CreateEvent {
+  endDate: DateTime!
+  location: String!
+  name: String!
+  password: String
+  startDate: DateTime!
+  state: EventState
+  ownerId: ID
+  owner: EventownerUser
+  drinksIds: [ID!]
+  drinks: [EventdrinksDrink!]
+  participantsIds: [ID!]
+  participants: [EventparticipantsParticipant!]
+}
+
+input CreateEventInput {
+  endDate: DateTime!
+  location: String!
+  name: String!
+  password: String
+  startDate: DateTime!
+  state: EventState
+  ownerId: ID
+  owner: EventownerUser
+  drinksIds: [ID!]
+  drinks: [EventdrinksDrink!]
+  participantsIds: [ID!]
+  participants: [EventparticipantsParticipant!]
+  clientMutationId: String!
+}
+
+type CreateEventPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  event: Event
+  edge: EventEdge
+  owner: User
+}
+
+input CreateParticipant {
+  score: Int!
+  currentCharacterId: ID
+  currentCharacter: ParticipantcurrentCharacterCharacter
+  eventId: ID
+  event: ParticipanteventEvent
+  userId: ID
+  user: ParticipantuserUser
+  drinkedIds: [ID!]
+  drinked: [ParticipantdrinkedDrink!]
+  madeSungsIds: [ID!]
+  madeSungs: [ParticipantmadeSungsSung!]
+}
+
+input CreateParticipantInput {
+  score: Int!
+  currentCharacterId: ID
+  currentCharacter: ParticipantcurrentCharacterCharacter
+  eventId: ID
+  event: ParticipanteventEvent
+  userId: ID
+  user: ParticipantuserUser
+  drinkedIds: [ID!]
+  drinked: [ParticipantdrinkedDrink!]
+  madeSungsIds: [ID!]
+  madeSungs: [ParticipantmadeSungsSung!]
+  clientMutationId: String!
+}
+
+type CreateParticipantPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  participant: Participant
+  edge: ParticipantEdge
+  currentCharacter: Character
+  event: Event
+  user: User
+}
+
+input CreateSung {
+  points: Int
+  text: String
+  participantsIds: [ID!]
+  participants: [SungparticipantsParticipant!]
+}
+
+input CreateSungInput {
+  points: Int
+  text: String
+  participantsIds: [ID!]
+  participants: [SungparticipantsParticipant!]
+  clientMutationId: String!
+}
+
+type CreateSungPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  sung: Sung
+  edge: SungEdge
+}
+
+input CreateUser {
+  name: String
+  createdEventsIds: [ID!]
+  createdEvents: [UsercreatedEventsEvent!]
+  participantsIds: [ID!]
+  participants: [UserparticipantsParticipant!]
+}
+
+# If authentication was successful the payload contains the user and a token. If unsuccessful this payload is null.
+type CreateUserPayload {
+  user: User
+  clientMutationId: String
+  viewer: Viewer!
+}
+
+scalar DateTime
+
+input DeleteCharacterInput {
+  id: ID!
+  clientMutationId: String!
+}
+
+type DeleteCharacterPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  character: Character
+  edge: CharacterEdge
+  deletedId: ID
+}
+
+input DeleteDrinkInput {
+  id: ID!
+  clientMutationId: String!
+}
+
+type DeleteDrinkPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  drink: Drink
+  edge: DrinkEdge
+  event: Event
+  deletedId: ID
+}
+
+input DeleteEventInput {
+  id: ID!
+  clientMutationId: String!
+}
+
+type DeleteEventPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  event: Event
+  edge: EventEdge
+  owner: User
+  deletedId: ID
+}
+
+input DeleteParticipantInput {
+  id: ID!
+  clientMutationId: String!
+}
+
+type DeleteParticipantPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  participant: Participant
+  edge: ParticipantEdge
+  currentCharacter: Character
+  event: Event
+  user: User
+  deletedId: ID
+}
+
+input DeleteSungInput {
+  id: ID!
+  clientMutationId: String!
+}
+
+type DeleteSungPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  sung: Sung
+  edge: SungEdge
+  deletedId: ID
+}
+
+input DeleteUserInput {
+  id: ID!
+  clientMutationId: String!
+}
+
+type DeleteUserPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  user: User
+  edge: UserEdge
+  deletedId: ID
+}
+
+type Drink implements Node {
+  drinkedByParticipants(filter: ParticipantFilter, orderBy: ParticipantOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): ParticipantConnection
+  event(filter: EventFilter): Event!
+  id: ID!
+  imageUrl: String
+  name: String
+  points: Int!
+}
+
+# A connection to a list of items.
+type DrinkConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [DrinkEdge]
+
+  # Count of filtered result set without considering pagination arguments
+  count: Int!
+}
+
+input DrinkdrinkedByParticipantsParticipant {
+  score: Int!
+  currentCharacterId: ID
+  currentCharacter: ParticipantcurrentCharacterCharacter
+  eventId: ID
+  event: ParticipanteventEvent
+  userId: ID
+  user: ParticipantuserUser
+  drinkedIds: [ID!]
+  drinked: [ParticipantdrinkedDrink!]
+  madeSungsIds: [ID!]
+  madeSungs: [ParticipantmadeSungsSung!]
+}
+
+# An edge in a connection.
+type DrinkEdge {
+  # The item at the end of the edge.
+  node: Drink!
+
+  # A cursor for use in pagination.
+  cursor: String!
+}
+
+input DrinkeventEvent {
+  endDate: DateTime!
+  location: String!
+  name: String!
+  password: String
+  startDate: DateTime!
+  state: EventState
+  ownerId: ID
+  owner: EventownerUser
+  drinksIds: [ID!]
+  drinks: [EventdrinksDrink!]
+  participantsIds: [ID!]
+  participants: [EventparticipantsParticipant!]
+}
+
+input DrinkFilter {
+  # Logical AND on all given filters.
+  AND: [DrinkFilter!]
+
+  # Logical OR on all given filters.
+  OR: [DrinkFilter!]
+  id: ID
+
+  # All values that are not equal to given value.
+  id_not: ID
+
+  # All values that are contained in given list.
+  id_in: [ID!]
+
+  # All values that are not contained in given list.
+  id_not_in: [ID!]
+
+  # All values less than the given value.
+  id_lt: ID
+
+  # All values less than or equal the given value.
+  id_lte: ID
+
+  # All values greater than the given value.
+  id_gt: ID
+
+  # All values greater than or equal the given value.
+  id_gte: ID
+
+  # All values containing the given string.
+  id_contains: ID
+
+  # All values not containing the given string.
+  id_not_contains: ID
+
+  # All values starting with the given string.
+  id_starts_with: ID
+
+  # All values not starting with the given string.
+  id_not_starts_with: ID
+
+  # All values ending with the given string.
+  id_ends_with: ID
+
+  # All values not ending with the given string.
+  id_not_ends_with: ID
+  imageUrl: String
+
+  # All values that are not equal to given value.
+  imageUrl_not: String
+
+  # All values that are contained in given list.
+  imageUrl_in: [String!]
+
+  # All values that are not contained in given list.
+  imageUrl_not_in: [String!]
+
+  # All values less than the given value.
+  imageUrl_lt: String
+
+  # All values less than or equal the given value.
+  imageUrl_lte: String
+
+  # All values greater than the given value.
+  imageUrl_gt: String
+
+  # All values greater than or equal the given value.
+  imageUrl_gte: String
+
+  # All values containing the given string.
+  imageUrl_contains: String
+
+  # All values not containing the given string.
+  imageUrl_not_contains: String
+
+  # All values starting with the given string.
+  imageUrl_starts_with: String
+
+  # All values not starting with the given string.
+  imageUrl_not_starts_with: String
+
+  # All values ending with the given string.
+  imageUrl_ends_with: String
+
+  # All values not ending with the given string.
+  imageUrl_not_ends_with: String
+  name: String
+
+  # All values that are not equal to given value.
+  name_not: String
+
+  # All values that are contained in given list.
+  name_in: [String!]
+
+  # All values that are not contained in given list.
+  name_not_in: [String!]
+
+  # All values less than the given value.
+  name_lt: String
+
+  # All values less than or equal the given value.
+  name_lte: String
+
+  # All values greater than the given value.
+  name_gt: String
+
+  # All values greater than or equal the given value.
+  name_gte: String
+
+  # All values containing the given string.
+  name_contains: String
+
+  # All values not containing the given string.
+  name_not_contains: String
+
+  # All values starting with the given string.
+  name_starts_with: String
+
+  # All values not starting with the given string.
+  name_not_starts_with: String
+
+  # All values ending with the given string.
+  name_ends_with: String
+
+  # All values not ending with the given string.
+  name_not_ends_with: String
+  points: Int
+
+  # All values that are not equal to given value.
+  points_not: Int
+
+  # All values that are contained in given list.
+  points_in: [Int!]
+
+  # All values that are not contained in given list.
+  points_not_in: [Int!]
+
+  # All values less than the given value.
+  points_lt: Int
+
+  # All values less than or equal the given value.
+  points_lte: Int
+
+  # All values greater than the given value.
+  points_gt: Int
+
+  # All values greater than or equal the given value.
+  points_gte: Int
+  drinkedByParticipants_every: ParticipantFilter
+  drinkedByParticipants_some: ParticipantFilter
+  drinkedByParticipants_none: ParticipantFilter
+  event: EventFilter
+}
+
+enum DrinkOrderBy {
+  id_ASC
+  id_DESC
+  imageUrl_ASC
+  imageUrl_DESC
+  name_ASC
+  name_DESC
+  points_ASC
+  points_DESC
+}
+
+type Event implements Node {
+  drinks(filter: DrinkFilter, orderBy: DrinkOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): DrinkConnection
+  endDate: DateTime!
+  id: ID!
+  location: String!
+  name: String!
+  owner(filter: UserFilter): User!
+  participants(filter: ParticipantFilter, orderBy: ParticipantOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): ParticipantConnection
+  password: String
+  startDate: DateTime!
+  state: EventState
+}
+
+# A connection to a list of items.
+type EventConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [EventEdge]
+
+  # Count of filtered result set without considering pagination arguments
+  count: Int!
+}
+
+input EventdrinksDrink {
+  imageUrl: String
+  name: String
+  points: Int!
+  drinkedByParticipantsIds: [ID!]
+  drinkedByParticipants: [DrinkdrinkedByParticipantsParticipant!]
+}
+
+# An edge in a connection.
+type EventEdge {
+  # The item at the end of the edge.
+  node: Event!
+
+  # A cursor for use in pagination.
+  cursor: String!
+}
+
+input EventFilter {
+  # Logical AND on all given filters.
+  AND: [EventFilter!]
+
+  # Logical OR on all given filters.
+  OR: [EventFilter!]
+  endDate: DateTime
+
+  # All values that are not equal to given value.
+  endDate_not: DateTime
+
+  # All values that are contained in given list.
+  endDate_in: [DateTime!]
+
+  # All values that are not contained in given list.
+  endDate_not_in: [DateTime!]
+
+  # All values less than the given value.
+  endDate_lt: DateTime
+
+  # All values less than or equal the given value.
+  endDate_lte: DateTime
+
+  # All values greater than the given value.
+  endDate_gt: DateTime
+
+  # All values greater than or equal the given value.
+  endDate_gte: DateTime
+  id: ID
+
+  # All values that are not equal to given value.
+  id_not: ID
+
+  # All values that are contained in given list.
+  id_in: [ID!]
+
+  # All values that are not contained in given list.
+  id_not_in: [ID!]
+
+  # All values less than the given value.
+  id_lt: ID
+
+  # All values less than or equal the given value.
+  id_lte: ID
+
+  # All values greater than the given value.
+  id_gt: ID
+
+  # All values greater than or equal the given value.
+  id_gte: ID
+
+  # All values containing the given string.
+  id_contains: ID
+
+  # All values not containing the given string.
+  id_not_contains: ID
+
+  # All values starting with the given string.
+  id_starts_with: ID
+
+  # All values not starting with the given string.
+  id_not_starts_with: ID
+
+  # All values ending with the given string.
+  id_ends_with: ID
+
+  # All values not ending with the given string.
+  id_not_ends_with: ID
+  location: String
+
+  # All values that are not equal to given value.
+  location_not: String
+
+  # All values that are contained in given list.
+  location_in: [String!]
+
+  # All values that are not contained in given list.
+  location_not_in: [String!]
+
+  # All values less than the given value.
+  location_lt: String
+
+  # All values less than or equal the given value.
+  location_lte: String
+
+  # All values greater than the given value.
+  location_gt: String
+
+  # All values greater than or equal the given value.
+  location_gte: String
+
+  # All values containing the given string.
+  location_contains: String
+
+  # All values not containing the given string.
+  location_not_contains: String
+
+  # All values starting with the given string.
+  location_starts_with: String
+
+  # All values not starting with the given string.
+  location_not_starts_with: String
+
+  # All values ending with the given string.
+  location_ends_with: String
+
+  # All values not ending with the given string.
+  location_not_ends_with: String
+  name: String
+
+  # All values that are not equal to given value.
+  name_not: String
+
+  # All values that are contained in given list.
+  name_in: [String!]
+
+  # All values that are not contained in given list.
+  name_not_in: [String!]
+
+  # All values less than the given value.
+  name_lt: String
+
+  # All values less than or equal the given value.
+  name_lte: String
+
+  # All values greater than the given value.
+  name_gt: String
+
+  # All values greater than or equal the given value.
+  name_gte: String
+
+  # All values containing the given string.
+  name_contains: String
+
+  # All values not containing the given string.
+  name_not_contains: String
+
+  # All values starting with the given string.
+  name_starts_with: String
+
+  # All values not starting with the given string.
+  name_not_starts_with: String
+
+  # All values ending with the given string.
+  name_ends_with: String
+
+  # All values not ending with the given string.
+  name_not_ends_with: String
+  password: String
+
+  # All values that are not equal to given value.
+  password_not: String
+
+  # All values that are contained in given list.
+  password_in: [String!]
+
+  # All values that are not contained in given list.
+  password_not_in: [String!]
+
+  # All values less than the given value.
+  password_lt: String
+
+  # All values less than or equal the given value.
+  password_lte: String
+
+  # All values greater than the given value.
+  password_gt: String
+
+  # All values greater than or equal the given value.
+  password_gte: String
+
+  # All values containing the given string.
+  password_contains: String
+
+  # All values not containing the given string.
+  password_not_contains: String
+
+  # All values starting with the given string.
+  password_starts_with: String
+
+  # All values not starting with the given string.
+  password_not_starts_with: String
+
+  # All values ending with the given string.
+  password_ends_with: String
+
+  # All values not ending with the given string.
+  password_not_ends_with: String
+  startDate: DateTime
+
+  # All values that are not equal to given value.
+  startDate_not: DateTime
+
+  # All values that are contained in given list.
+  startDate_in: [DateTime!]
+
+  # All values that are not contained in given list.
+  startDate_not_in: [DateTime!]
+
+  # All values less than the given value.
+  startDate_lt: DateTime
+
+  # All values less than or equal the given value.
+  startDate_lte: DateTime
+
+  # All values greater than the given value.
+  startDate_gt: DateTime
+
+  # All values greater than or equal the given value.
+  startDate_gte: DateTime
+  state: EventState
+
+  # All values that are not equal to given value.
+  state_not: EventState
+
+  # All values that are contained in given list.
+  state_in: [EventState!]
+
+  # All values that are not contained in given list.
+  state_not_in: [EventState!]
+  drinks_every: DrinkFilter
+  drinks_some: DrinkFilter
+  drinks_none: DrinkFilter
+  owner: UserFilter
+  participants_every: ParticipantFilter
+  participants_some: ParticipantFilter
+  participants_none: ParticipantFilter
+}
+
+enum EventOrderBy {
+  endDate_ASC
+  endDate_DESC
+  id_ASC
+  id_DESC
+  location_ASC
+  location_DESC
+  name_ASC
+  name_DESC
+  password_ASC
+  password_DESC
+  startDate_ASC
+  startDate_DESC
+  state_ASC
+  state_DESC
+}
+
+input EventownerUser {
+  name: String
+  createdEventsIds: [ID!]
+  createdEvents: [UsercreatedEventsEvent!]
+  participantsIds: [ID!]
+  participants: [UserparticipantsParticipant!]
+}
+
+input EventparticipantsParticipant {
+  score: Int!
+  currentCharacterId: ID
+  currentCharacter: ParticipantcurrentCharacterCharacter
+  userId: ID
+  user: ParticipantuserUser
+  drinkedIds: [ID!]
+  drinked: [ParticipantdrinkedDrink!]
+  madeSungsIds: [ID!]
+  madeSungs: [ParticipantmadeSungsSung!]
+}
+
+enum EventState {
+  WAITING
+  HAPPENING
+  CANCELLED
+  FINISHED
+}
+
+# HelloPayload
+type HelloPayload {
+  message: String!
+}
+
+type Mutation {
+  createCharacter(input: CreateCharacterInput!): CreateCharacterPayload
+  createDrink(input: CreateDrinkInput!): CreateDrinkPayload
+  createEvent(input: CreateEventInput!): CreateEventPayload
+  createParticipant(input: CreateParticipantInput!): CreateParticipantPayload
+  createSung(input: CreateSungInput!): CreateSungPayload
+  updateCharacter(input: UpdateCharacterInput!): UpdateCharacterPayload
+  updateDrink(input: UpdateDrinkInput!): UpdateDrinkPayload
+  updateEvent(input: UpdateEventInput!): UpdateEventPayload
+  updateParticipant(input: UpdateParticipantInput!): UpdateParticipantPayload
+  updateSung(input: UpdateSungInput!): UpdateSungPayload
+  updateUser(input: UpdateUserInput!): UpdateUserPayload
+  updateOrCreateCharacter(input: UpdateOrCreateCharacterInput!): UpdateOrCreateCharacterPayload
+  updateOrCreateDrink(input: UpdateOrCreateDrinkInput!): UpdateOrCreateDrinkPayload
+  updateOrCreateEvent(input: UpdateOrCreateEventInput!): UpdateOrCreateEventPayload
+  updateOrCreateParticipant(input: UpdateOrCreateParticipantInput!): UpdateOrCreateParticipantPayload
+  updateOrCreateSung(input: UpdateOrCreateSungInput!): UpdateOrCreateSungPayload
+  updateOrCreateUser(input: UpdateOrCreateUserInput!): UpdateOrCreateUserPayload
+  deleteCharacter(input: DeleteCharacterInput!): DeleteCharacterPayload
+  deleteDrink(input: DeleteDrinkInput!): DeleteDrinkPayload
+  deleteEvent(input: DeleteEventInput!): DeleteEventPayload
+  deleteParticipant(input: DeleteParticipantInput!): DeleteParticipantPayload
+  deleteSung(input: DeleteSungInput!): DeleteSungPayload
+  deleteUser(input: DeleteUserInput!): DeleteUserPayload
+  addToEventDrinks(input: AddToEventDrinksEventInput!): AddToEventDrinksPayload
+  addToEventOwner(input: AddToEventOwnerUserInput!): AddToEventOwnerPayload
+  addToEventParticipants(input: AddToEventParticipantsEventInput!): AddToEventParticipantsPayload
+  addToParticipanDrinks(input: AddToParticipanDrinksDrinkInput!): AddToParticipanDrinksPayload
+  addToParticipantCharacter(input: AddToParticipantCharacterParticipantInput!): AddToParticipantCharacterPayload
+  addToParticipantSungs(input: AddToParticipantSungsSungInput!): AddToParticipantSungsPayload
+  addToUserParticipants(input: AddToUserParticipantsUserInput!): AddToUserParticipantsPayload
+  removeFromParticipanDrinks(input: RemoveFromParticipanDrinksDrinkInput!): RemoveFromParticipanDrinksPayload
+  removeFromParticipantCharacter(input: RemoveFromParticipantCharacterParticipantInput!): RemoveFromParticipantCharacterPayload
+  removeFromParticipantSungs(input: RemoveFromParticipantSungsSungInput!): RemoveFromParticipantSungsPayload
+  createUser(input: SignupUserInput!): CreateUserPayload!
+}
+
+# An object with an ID
+interface Node {
+  # The id of the object.
+  id: ID!
+}
+
+# Information about pagination in a connection.
+type PageInfo {
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+}
+
+type Participant implements Node {
+  currentCharacter(filter: CharacterFilter): Character
+  drinked(filter: DrinkFilter, orderBy: DrinkOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): DrinkConnection
+  event(filter: EventFilter): Event!
+  id: ID!
+  madeSungs(filter: SungFilter, orderBy: SungOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): SungConnection
+  score: Int!
+  user(filter: UserFilter): User!
+}
+
+# A connection to a list of items.
+type ParticipantConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [ParticipantEdge]
+
+  # Count of filtered result set without considering pagination arguments
+  count: Int!
+}
+
+input ParticipantcurrentCharacterCharacter {
+  description: String
+  facebookProfileUrl: String
+  imageUrl: String
+  name: String
+  points: Int
+  participantsIds: [ID!]
+  participants: [CharacterparticipantsParticipant!]
+}
+
+input ParticipantdrinkedDrink {
+  imageUrl: String
+  name: String
+  points: Int!
+  eventId: ID
+  event: DrinkeventEvent
+  drinkedByParticipantsIds: [ID!]
+  drinkedByParticipants: [DrinkdrinkedByParticipantsParticipant!]
+}
+
+# An edge in a connection.
+type ParticipantEdge {
+  # The item at the end of the edge.
+  node: Participant!
+
+  # A cursor for use in pagination.
+  cursor: String!
+}
+
+input ParticipanteventEvent {
+  endDate: DateTime!
+  location: String!
+  name: String!
+  password: String
+  startDate: DateTime!
+  state: EventState
+  ownerId: ID
+  owner: EventownerUser
+  drinksIds: [ID!]
+  drinks: [EventdrinksDrink!]
+  participantsIds: [ID!]
+  participants: [EventparticipantsParticipant!]
+}
+
+input ParticipantFilter {
+  # Logical AND on all given filters.
+  AND: [ParticipantFilter!]
+
+  # Logical OR on all given filters.
+  OR: [ParticipantFilter!]
+  id: ID
+
+  # All values that are not equal to given value.
+  id_not: ID
+
+  # All values that are contained in given list.
+  id_in: [ID!]
+
+  # All values that are not contained in given list.
+  id_not_in: [ID!]
+
+  # All values less than the given value.
+  id_lt: ID
+
+  # All values less than or equal the given value.
+  id_lte: ID
+
+  # All values greater than the given value.
+  id_gt: ID
+
+  # All values greater than or equal the given value.
+  id_gte: ID
+
+  # All values containing the given string.
+  id_contains: ID
+
+  # All values not containing the given string.
+  id_not_contains: ID
+
+  # All values starting with the given string.
+  id_starts_with: ID
+
+  # All values not starting with the given string.
+  id_not_starts_with: ID
+
+  # All values ending with the given string.
+  id_ends_with: ID
+
+  # All values not ending with the given string.
+  id_not_ends_with: ID
+  score: Int
+
+  # All values that are not equal to given value.
+  score_not: Int
+
+  # All values that are contained in given list.
+  score_in: [Int!]
+
+  # All values that are not contained in given list.
+  score_not_in: [Int!]
+
+  # All values less than the given value.
+  score_lt: Int
+
+  # All values less than or equal the given value.
+  score_lte: Int
+
+  # All values greater than the given value.
+  score_gt: Int
+
+  # All values greater than or equal the given value.
+  score_gte: Int
+  currentCharacter: CharacterFilter
+  drinked_every: DrinkFilter
+  drinked_some: DrinkFilter
+  drinked_none: DrinkFilter
+  event: EventFilter
+  madeSungs_every: SungFilter
+  madeSungs_some: SungFilter
+  madeSungs_none: SungFilter
+  user: UserFilter
+}
+
+input ParticipantmadeSungsSung {
+  points: Int
+  text: String
+  participantsIds: [ID!]
+  participants: [SungparticipantsParticipant!]
+}
+
+enum ParticipantOrderBy {
+  id_ASC
+  id_DESC
+  score_ASC
+  score_DESC
+}
+
+input ParticipantuserUser {
+  name: String
+  createdEventsIds: [ID!]
+  createdEvents: [UsercreatedEventsEvent!]
+  participantsIds: [ID!]
+  participants: [UserparticipantsParticipant!]
+}
+
+type Query {
+  viewer: Viewer!
+
+  # Fetches an object given its ID
+  node(
+    # The ID of an object
+    id: ID!
+  ): Node
+}
+
+input RemoveFromParticipanDrinksDrinkInput {
+  drinkedByParticipantsParticipantId: ID!
+  drinkedDrinkId: ID!
+  clientMutationId: String!
+}
+
+type RemoveFromParticipanDrinksPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  drinkedDrink: Drink
+  drinkedByParticipantsParticipant: Participant
+  drinkedDrinkEdge: DrinkEdge
+  drinkedByParticipantsParticipantEdge: ParticipantEdge
+}
+
+input RemoveFromParticipantCharacterParticipantInput {
+  currentCharacterCharacterId: ID!
+  participantsParticipantId: ID!
+  clientMutationId: String!
+}
+
+type RemoveFromParticipantCharacterPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  participantsParticipant: Participant
+  currentCharacterCharacter: Character
+  participantsParticipantEdge: ParticipantEdge
+  currentCharacterCharacterEdge: CharacterEdge
+}
+
+type RemoveFromParticipantSungsPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  madeSungsSung: Sung
+  participantsParticipant: Participant
+  madeSungsSungEdge: SungEdge
+  participantsParticipantEdge: ParticipantEdge
+}
+
+input RemoveFromParticipantSungsSungInput {
+  participantsParticipantId: ID!
+  madeSungsSungId: ID!
+  clientMutationId: String!
+}
+
+input SignupUserInput {
+  name: String
+  createdEventsIds: [ID!]
+  createdEvents: [UsercreatedEventsEvent!]
+  participantsIds: [ID!]
+  participants: [UserparticipantsParticipant!]
+  clientMutationId: String!
+}
+
+type Sung implements Node {
+  id: ID!
+  participants(filter: ParticipantFilter, orderBy: ParticipantOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): ParticipantConnection
+  points: Int
+  text: String
+}
+
+# A connection to a list of items.
+type SungConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [SungEdge]
+
+  # Count of filtered result set without considering pagination arguments
+  count: Int!
+}
+
+# An edge in a connection.
+type SungEdge {
+  # The item at the end of the edge.
+  node: Sung!
+
+  # A cursor for use in pagination.
+  cursor: String!
+}
+
+input SungFilter {
+  # Logical AND on all given filters.
+  AND: [SungFilter!]
+
+  # Logical OR on all given filters.
+  OR: [SungFilter!]
+  id: ID
+
+  # All values that are not equal to given value.
+  id_not: ID
+
+  # All values that are contained in given list.
+  id_in: [ID!]
+
+  # All values that are not contained in given list.
+  id_not_in: [ID!]
+
+  # All values less than the given value.
+  id_lt: ID
+
+  # All values less than or equal the given value.
+  id_lte: ID
+
+  # All values greater than the given value.
+  id_gt: ID
+
+  # All values greater than or equal the given value.
+  id_gte: ID
+
+  # All values containing the given string.
+  id_contains: ID
+
+  # All values not containing the given string.
+  id_not_contains: ID
+
+  # All values starting with the given string.
+  id_starts_with: ID
+
+  # All values not starting with the given string.
+  id_not_starts_with: ID
+
+  # All values ending with the given string.
+  id_ends_with: ID
+
+  # All values not ending with the given string.
+  id_not_ends_with: ID
+  points: Int
+
+  # All values that are not equal to given value.
+  points_not: Int
+
+  # All values that are contained in given list.
+  points_in: [Int!]
+
+  # All values that are not contained in given list.
+  points_not_in: [Int!]
+
+  # All values less than the given value.
+  points_lt: Int
+
+  # All values less than or equal the given value.
+  points_lte: Int
+
+  # All values greater than the given value.
+  points_gt: Int
+
+  # All values greater than or equal the given value.
+  points_gte: Int
+  text: String
+
+  # All values that are not equal to given value.
+  text_not: String
+
+  # All values that are contained in given list.
+  text_in: [String!]
+
+  # All values that are not contained in given list.
+  text_not_in: [String!]
+
+  # All values less than the given value.
+  text_lt: String
+
+  # All values less than or equal the given value.
+  text_lte: String
+
+  # All values greater than the given value.
+  text_gt: String
+
+  # All values greater than or equal the given value.
+  text_gte: String
+
+  # All values containing the given string.
+  text_contains: String
+
+  # All values not containing the given string.
+  text_not_contains: String
+
+  # All values starting with the given string.
+  text_starts_with: String
+
+  # All values not starting with the given string.
+  text_not_starts_with: String
+
+  # All values ending with the given string.
+  text_ends_with: String
+
+  # All values not ending with the given string.
+  text_not_ends_with: String
+  participants_every: ParticipantFilter
+  participants_some: ParticipantFilter
+  participants_none: ParticipantFilter
+}
+
+enum SungOrderBy {
+  id_ASC
+  id_DESC
+  points_ASC
+  points_DESC
+  text_ASC
+  text_DESC
+}
+
+input SungparticipantsParticipant {
+  score: Int!
+  currentCharacterId: ID
+  currentCharacter: ParticipantcurrentCharacterCharacter
+  eventId: ID
+  event: ParticipanteventEvent
+  userId: ID
+  user: ParticipantuserUser
+  drinkedIds: [ID!]
+  drinked: [ParticipantdrinkedDrink!]
+  madeSungsIds: [ID!]
+  madeSungs: [ParticipantmadeSungsSung!]
+}
+
+input UpdateCharacter {
+  description: String
+  facebookProfileUrl: String
+  id: ID!
+  imageUrl: String
+  name: String
+  points: Int
+  participantsIds: [ID!]
+  participants: [CharacterparticipantsParticipant!]
+}
+
+input UpdateCharacterInput {
+  description: String
+  facebookProfileUrl: String
+  id: ID!
+  imageUrl: String
+  name: String
+  points: Int
+  participantsIds: [ID!]
+  participants: [CharacterparticipantsParticipant!]
+  clientMutationId: String!
+}
+
+type UpdateCharacterPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  character: Character
+  edge: CharacterEdge
+}
+
+input UpdateDrink {
+  id: ID!
+  imageUrl: String
+  name: String
+  points: Int
+  eventId: ID
+  event: DrinkeventEvent
+  drinkedByParticipantsIds: [ID!]
+  drinkedByParticipants: [DrinkdrinkedByParticipantsParticipant!]
+}
+
+input UpdateDrinkInput {
+  id: ID!
+  imageUrl: String
+  name: String
+  points: Int
+  eventId: ID
+  event: DrinkeventEvent
+  drinkedByParticipantsIds: [ID!]
+  drinkedByParticipants: [DrinkdrinkedByParticipantsParticipant!]
+  clientMutationId: String!
+}
+
+type UpdateDrinkPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  drink: Drink
+  edge: DrinkEdge
+  event: Event
+}
+
+input UpdateEvent {
+  endDate: DateTime
+  id: ID!
+  location: String
+  name: String
+  password: String
+  startDate: DateTime
+  state: EventState
+  ownerId: ID
+  owner: EventownerUser
+  drinksIds: [ID!]
+  drinks: [EventdrinksDrink!]
+  participantsIds: [ID!]
+  participants: [EventparticipantsParticipant!]
+}
+
+input UpdateEventInput {
+  endDate: DateTime
+  id: ID!
+  location: String
+  name: String
+  password: String
+  startDate: DateTime
+  state: EventState
+  ownerId: ID
+  owner: EventownerUser
+  drinksIds: [ID!]
+  drinks: [EventdrinksDrink!]
+  participantsIds: [ID!]
+  participants: [EventparticipantsParticipant!]
+  clientMutationId: String!
+}
+
+type UpdateEventPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  event: Event
+  edge: EventEdge
+  owner: User
+}
+
+input UpdateOrCreateCharacterInput {
+  update: UpdateCharacter!
+  create: CreateCharacter!
+  clientMutationId: String!
+}
+
+type UpdateOrCreateCharacterPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  character: Character
+  edge: CharacterEdge
+}
+
+input UpdateOrCreateDrinkInput {
+  update: UpdateDrink!
+  create: CreateDrink!
+  clientMutationId: String!
+}
+
+type UpdateOrCreateDrinkPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  drink: Drink
+  edge: DrinkEdge
+  event: Event
+}
+
+input UpdateOrCreateEventInput {
+  update: UpdateEvent!
+  create: CreateEvent!
+  clientMutationId: String!
+}
+
+type UpdateOrCreateEventPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  event: Event
+  edge: EventEdge
+  owner: User
+}
+
+input UpdateOrCreateParticipantInput {
+  update: UpdateParticipant!
+  create: CreateParticipant!
+  clientMutationId: String!
+}
+
+type UpdateOrCreateParticipantPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  participant: Participant
+  edge: ParticipantEdge
+  currentCharacter: Character
+  event: Event
+  user: User
+}
+
+input UpdateOrCreateSungInput {
+  update: UpdateSung!
+  create: CreateSung!
+  clientMutationId: String!
+}
+
+type UpdateOrCreateSungPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  sung: Sung
+  edge: SungEdge
+}
+
+input UpdateOrCreateUserInput {
+  update: UpdateUser!
+  create: CreateUser!
+  clientMutationId: String!
+}
+
+type UpdateOrCreateUserPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  user: User
+  edge: UserEdge
+}
+
+input UpdateParticipant {
+  id: ID!
+  score: Int
+  currentCharacterId: ID
+  currentCharacter: ParticipantcurrentCharacterCharacter
+  eventId: ID
+  event: ParticipanteventEvent
+  userId: ID
+  user: ParticipantuserUser
+  drinkedIds: [ID!]
+  drinked: [ParticipantdrinkedDrink!]
+  madeSungsIds: [ID!]
+  madeSungs: [ParticipantmadeSungsSung!]
+}
+
+input UpdateParticipantInput {
+  id: ID!
+  score: Int
+  currentCharacterId: ID
+  currentCharacter: ParticipantcurrentCharacterCharacter
+  eventId: ID
+  event: ParticipanteventEvent
+  userId: ID
+  user: ParticipantuserUser
+  drinkedIds: [ID!]
+  drinked: [ParticipantdrinkedDrink!]
+  madeSungsIds: [ID!]
+  madeSungs: [ParticipantmadeSungsSung!]
+  clientMutationId: String!
+}
+
+type UpdateParticipantPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  participant: Participant
+  edge: ParticipantEdge
+  currentCharacter: Character
+  event: Event
+  user: User
+}
+
+input UpdateSung {
+  id: ID!
+  points: Int
+  text: String
+  participantsIds: [ID!]
+  participants: [SungparticipantsParticipant!]
+}
+
+input UpdateSungInput {
+  id: ID!
+  points: Int
+  text: String
+  participantsIds: [ID!]
+  participants: [SungparticipantsParticipant!]
+  clientMutationId: String!
+}
+
+type UpdateSungPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  sung: Sung
+  edge: SungEdge
+}
+
+input UpdateUser {
+  id: ID!
+  name: String
+  createdEventsIds: [ID!]
+  createdEvents: [UsercreatedEventsEvent!]
+  participantsIds: [ID!]
+  participants: [UserparticipantsParticipant!]
+}
+
+input UpdateUserInput {
+  id: ID!
+  name: String
+  createdEventsIds: [ID!]
+  createdEvents: [UsercreatedEventsEvent!]
+  participantsIds: [ID!]
+  participants: [UserparticipantsParticipant!]
+  clientMutationId: String!
+}
+
+type UpdateUserPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  user: User
+  edge: UserEdge
+}
+
+type User implements Node {
+  createdEvents(filter: EventFilter, orderBy: EventOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): EventConnection
+  id: ID!
+  name: String
+  participants(filter: ParticipantFilter, orderBy: ParticipantOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): ParticipantConnection
+}
+
+# A connection to a list of items.
+type UserConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [UserEdge]
+
+  # Count of filtered result set without considering pagination arguments
+  count: Int!
+}
+
+input UsercreatedEventsEvent {
+  endDate: DateTime!
+  location: String!
+  name: String!
+  password: String
+  startDate: DateTime!
+  state: EventState
+  drinksIds: [ID!]
+  drinks: [EventdrinksDrink!]
+  participantsIds: [ID!]
+  participants: [EventparticipantsParticipant!]
+}
+
+# An edge in a connection.
+type UserEdge {
+  # The item at the end of the edge.
+  node: User!
+
+  # A cursor for use in pagination.
+  cursor: String!
+}
+
+input UserFilter {
+  # Logical AND on all given filters.
+  AND: [UserFilter!]
+
+  # Logical OR on all given filters.
+  OR: [UserFilter!]
+  id: ID
+
+  # All values that are not equal to given value.
+  id_not: ID
+
+  # All values that are contained in given list.
+  id_in: [ID!]
+
+  # All values that are not contained in given list.
+  id_not_in: [ID!]
+
+  # All values less than the given value.
+  id_lt: ID
+
+  # All values less than or equal the given value.
+  id_lte: ID
+
+  # All values greater than the given value.
+  id_gt: ID
+
+  # All values greater than or equal the given value.
+  id_gte: ID
+
+  # All values containing the given string.
+  id_contains: ID
+
+  # All values not containing the given string.
+  id_not_contains: ID
+
+  # All values starting with the given string.
+  id_starts_with: ID
+
+  # All values not starting with the given string.
+  id_not_starts_with: ID
+
+  # All values ending with the given string.
+  id_ends_with: ID
+
+  # All values not ending with the given string.
+  id_not_ends_with: ID
+  name: String
+
+  # All values that are not equal to given value.
+  name_not: String
+
+  # All values that are contained in given list.
+  name_in: [String!]
+
+  # All values that are not contained in given list.
+  name_not_in: [String!]
+
+  # All values less than the given value.
+  name_lt: String
+
+  # All values less than or equal the given value.
+  name_lte: String
+
+  # All values greater than the given value.
+  name_gt: String
+
+  # All values greater than or equal the given value.
+  name_gte: String
+
+  # All values containing the given string.
+  name_contains: String
+
+  # All values not containing the given string.
+  name_not_contains: String
+
+  # All values starting with the given string.
+  name_starts_with: String
+
+  # All values not starting with the given string.
+  name_not_starts_with: String
+
+  # All values ending with the given string.
+  name_ends_with: String
+
+  # All values not ending with the given string.
+  name_not_ends_with: String
+  createdEvents_every: EventFilter
+  createdEvents_some: EventFilter
+  createdEvents_none: EventFilter
+  participants_every: ParticipantFilter
+  participants_some: ParticipantFilter
+  participants_none: ParticipantFilter
+}
+
+enum UserOrderBy {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+}
+
+input UserparticipantsParticipant {
+  score: Int!
+  currentCharacterId: ID
+  currentCharacter: ParticipantcurrentCharacterCharacter
+  eventId: ID
+  event: ParticipanteventEvent
+  drinkedIds: [ID!]
+  drinked: [ParticipantdrinkedDrink!]
+  madeSungsIds: [ID!]
+  madeSungs: [ParticipantmadeSungsSung!]
+}
+
+# This is the famous Relay viewer object
+type Viewer {
+  allCharacters(filter: CharacterFilter, orderBy: CharacterOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): CharacterConnection!
+  allDrinks(filter: DrinkFilter, orderBy: DrinkOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): DrinkConnection!
+  allEvents(filter: EventFilter, orderBy: EventOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): EventConnection!
+  allParticipants(filter: ParticipantFilter, orderBy: ParticipantOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): ParticipantConnection!
+  allSungs(filter: SungFilter, orderBy: SungOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): SungConnection!
+  allUsers(filter: UserFilter, orderBy: UserOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
+  user: User
+  Character(id: ID): Character
+  Drink(id: ID): Drink
+  Event(id: ID): Event
+  Participant(id: ID): Participant
+  Sung(id: ID): Sung
+  User(id: ID): User
+
+  # hello
+  hello(name: String): HelloPayload
+  id: ID!
+}

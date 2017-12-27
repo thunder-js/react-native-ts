@@ -9,9 +9,10 @@
     "start:android": "npm run build && concurrently -r 'npm run watch' 'react-native run-android'",
     "build:watch": "npm run watch",
     "storybook": "storybook start -p 7007 --haul webpack.haul.storybook.js --platform ios",
-    "postinstall": "yarn link common-data storm-onboarding storm-auth storm-system-components",
+    "postinstall": "yarn link common-data storm-onboarding storm-auth",
     "watch-types": "./script/watch-graphql-typescript-types",
-    "lint-fix": "tslint --fix --project ./tsconfig.json --config ./tslint.json"
+    "lint-fix": "tslint --fix --project ./tsconfig.json --config ./tslint.json",
+    "update-schema": "mkdir -p data/ && node ./script/update-schema.js"
   },
   "dependencies": {
     "apollo-client": "^2.0.3",
@@ -23,7 +24,9 @@
     "react-apollo": "^2.0.1",
     "react-native": "0.50.4",
     "recompose": "^0.26.0",
-    "styled-components": "^2.2.3"
+    "storm-system-components": "^0.0.3",
+    "styled-components": "^2.2.3",
+    "ts-mockito": "^2.2.7"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.2.16",

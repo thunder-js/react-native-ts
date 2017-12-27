@@ -18,7 +18,7 @@ export default graphql<IDeleteEventMutation, {}, IWithDeleteEventWrappedProps>(d
         /**
          * Commit mutation
          */
-        const result = await mutate({
+        await mutate({
           variables: {
             input: {
               id,

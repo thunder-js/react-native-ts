@@ -1,12 +1,12 @@
 import React from 'react'
 import { View, Text, StyleSheet, ViewStyle, TextStyle, TouchableOpacity } from 'react-native'
 
-export interface IAllEventsListItemProps {
+export interface IAllCharactersListItemProps {
   id: string;
   onPress: () => void;
 }
 
-const AllEventsListItem: React.SFC<IAllEventsListItemProps> = ({
+const AllCharactersListItem: React.SFC<IAllCharactersListItemProps> = ({
   id,
   onPress,
 }) => (
@@ -26,4 +26,4 @@ const styles = StyleSheet.create({
   } as TextStyle,
 })
 
-export default AllEventsListItem
+export default AllCharactersListItem

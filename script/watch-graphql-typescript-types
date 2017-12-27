@@ -11,5 +11,5 @@ while true; do
     break
   fi
   sleep 0.5
-  ./script/graphql-typescript-types.sh
+  ./script/graphql-typescript-types
 done

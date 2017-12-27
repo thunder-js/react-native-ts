@@ -7,10 +7,11 @@ import React, { Component } from 'react'
 import { View, StyleSheet, ViewStyle } from 'react-native'
 import { ApolloProvider } from 'react-apollo'
 import createApolloClient from 'storm-system-components/src/apollo'
-import AllEvents from './modules/events/containers/AllEvents'
+import AllCharactersList from './modules/characters/containers/AllCharactersList'
+import SingleCharacterScreen from './modules/characters/screens/SingleCharacter'
 
 const BROCHALLENGE_DEV = 'http://localhost:60000/relay/v1/cjbif011e000201887rzszrtr'
-const BROCHALLENGE_STAGING = 'https://api.graph.cool/relay/v1/cjbi3txqv0reu0121coxa0nsa'
+// const BROCHALLENGE_STAGING = 'https://api.graph.cool/relay/v1/cjbi3txqv0reu0121coxa0nsa'
 const PRODUCTION_URL = BROCHALLENGE_DEV
 
 const apolloClient = createApolloClient({
@@ -27,10 +28,8 @@ export class App extends Component<{}, {}> {
     return (
       <ApolloProvider client={apolloClient}>
         <View style={styles.container}>
-          {/* <AuthScreen /> */}
-          {/* <OnBoardingScreen /> */}
-          {/* <List myInput={'abc'} /> */}
-          <AllEvents />
+          {/* <AllCharactersList /> */}
+          <SingleCharacterScreen />
         </View>
       </ApolloProvider>
     )
