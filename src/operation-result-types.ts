@@ -1,11 +1,6 @@
 /* tslint:disable */
 //  This file was automatically generated and should not be edited.
 
-export type DeleteEventInput = {
-  id: string,
-  clientMutationId: string,
-};
-
 export type allCharactersQuery = {
   viewer:  {
     __typename: "Viewer",
@@ -54,24 +49,27 @@ export type allDrinksQuery = {
           id: string,
           name: string | null,
           imageUrl: string | null,
+          points: number,
         },
       } | null > | null,
     },
   },
 };
 
-export type deleteEventMutationVariables = {
-  input: DeleteEventInput,
+export type singleDrinkQueryVariables = {
+  id: string,
 };
 
-export type deleteEventMutation = {
-  deleteEvent:  {
-    __typename: "DeleteEventPayload",
-    event:  {
-      __typename: "Event",
+export type singleDrinkQuery = {
+  viewer:  {
+    __typename: "Viewer",
+    Drink:  {
+      __typename: "Drink",
+      name: string | null,
       id: string,
+      points: number,
     } | null,
-  } | null,
+  },
 };
 
 export type allEventsQuery = {
@@ -88,6 +86,26 @@ export type allEventsQuery = {
           id: string,
           name: string,
           location: string,
+        },
+      } | null > | null,
+    },
+  },
+};
+
+export type allSungsQuery = {
+  viewer:  {
+    __typename: "Viewer",
+    allSungs:  {
+      __typename: "SungConnection",
+      // A list of edges.
+      edges:  Array< {
+        __typename: "SungEdge",
+        // The item at the end of the edge.
+        node:  {
+          __typename: "Sung",
+          id: string,
+          text: string | null,
+          points: number | null,
         },
       } | null > | null,
     },

@@ -1,5 +1,4 @@
-require('./modules/characters/components/AllCharactersList/stories');
-require('./modules/characters/components/AllCharactersListItem/stories');
-require('./modules/drinks/components/AllDrinksList/stories');
+require('./modules/events/components/AllEventsListItem/stories');
+require('./modules/events/components/AllEventsList/stories');
 require('./modules/drinks/components/AllDrinksListItem/stories');
-require('./modules/characters/components/SingleCharacter/stories');
+require('./modules/drinks/components/AllDrinksList/stories');

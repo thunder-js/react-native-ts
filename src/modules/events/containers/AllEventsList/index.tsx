@@ -8,8 +8,7 @@ import Loading from '../../../global/components/Loading'
 
 import AllEventsList, { IEvent } from '../../components/AllEventsList'
 
-import withAllEvents, { IWithAllEventsWrappedProps } from '../../hocs/with-all-events';
-import withDeleteEvent from '../../hocs/with-delete-event'
+import withAllEvents, { IWithAllEventsWrappedProps } from '../../hocs/with-all-events.ts';
 
 type WrappedProps = IFetchActions & IFetchState & {
   allEvents: IEvent[],
@@ -23,10 +22,9 @@ const isEmpty = (props) => !props.allEvents || !props.allEvents.length
 export default compose<WrappedProps, {}>(
   //  Apollo
   withAllEvents,
-  withDeleteEvent,
   //  Handlers
   withHandlers({
-    onPressItem: ({ deleteEvent }) => (event: IEvent) => deleteEvent(event.id),
+    onPressItem: () => (item: IEvent) => null,
   }),
   //  Data
   withApolloFetchActions(),

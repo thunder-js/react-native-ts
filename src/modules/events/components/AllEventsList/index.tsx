@@ -10,7 +10,7 @@ export interface IEvent {
 }
 export interface IAllEventsListProps {
   allEvents: IEvent[];
-  onPressItem: (event: IEvent) => void;
+  onPressItem: (item: IEvent) => void;
 }
 
 class AllEventsList extends React.Component<IFetchActions & IFetchState & IAllEventsListProps> {

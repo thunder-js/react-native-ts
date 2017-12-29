@@ -6,22 +6,22 @@ import ErrorComponent from '../../../global/components/Error'
 import ListPlaceholder from '../../../global/components/ListPlaceholder'
 import Loading from '../../../global/components/Loading'
 
-import AllDrinksList, { IEntity } from '../../components/AllDrinksList'
+import AllSungsList, { IEntity } from '../../components/AllSungsList'
 
-import withAllDrinksList, { IWithAllDrinksWrappedProps } from '../../hocs/with-all-drinks';
+import withAllSungsList, { IWithAllSungsWrappedProps } from '../../hocs/with-all-sungs';
 
 type WrappedProps = IFetchActions & IFetchState & {
-  allDrinks: IEntity[],
+  allSungs: IEntity[],
   onPressItem: (event: IEntity) => void,
 }
 
 const isError = (props) => !!props.error
 const isLoading = (props) => props.fetchState.initialLoading
-const isEmpty = (props) => !props.allDrinks || !props.allDrinks.length
+const isEmpty = (props) => !props.allSungs || !props.allSungs.length
 
 export default compose<WrappedProps, {}>(
   //  Apollo
-  withAllDrinksList,
+  withAllSungsList,
   //  Handlers
   withHandlers({
     onPressItem: () => (item: IEntity) => null,
@@ -31,5 +31,5 @@ export default compose<WrappedProps, {}>(
   withApolloFetchState(),
   withError<QueryProps>(isError, ErrorComponent),
   withLoading<IFetchState>(isLoading, Loading),
-  withPlaceholder<IWithAllDrinksWrappedProps>(isEmpty, ListPlaceholder),
-)(AllDrinksList)
+  withPlaceholder<IWithAllSungsWrappedProps>(isEmpty, ListPlaceholder),
+)(AllSungsList)

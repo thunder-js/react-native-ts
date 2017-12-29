@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react-native';
-import AllDrinksList from './'
+import AllSungsList from './'
 
 const mockFetchActions = {
   refetch: () => null,
@@ -10,16 +10,16 @@ const mockFetchState = {
   activelyRefetching: false,
 }
 
-const allDrinks = [{
+const allSungs = [{
   id: '1',
 }, {
   id: '2',
 }]
 
-storiesOf('AllDrinksList Component', module)
+storiesOf('AllSungsList Component', module)
   .add('default', () => (
-    <AllDrinksList
-      allDrinks={allDrinks}
+    <AllSungsList
+      allSungs={allSungs}
       onPressItem={() => {}}
       fetchActions={mockFetchActions}
       fetchState={mockFetchState}

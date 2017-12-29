@@ -1,18 +1,24 @@
 import React from 'react'
 import { View, Text, StyleSheet, ViewStyle, TextStyle, TouchableOpacity } from 'react-native'
 
-export interface IAllDrinksListItemProps {
+export interface IAllSungsListItemProps {
   id: string;
+  text?: string;
+  points?: number;
   onPress: () => void;
 }
 
-const AllDrinksListItem: React.SFC<IAllDrinksListItemProps> = ({
+const AllSungsListItem: React.SFC<IAllSungsListItemProps> = ({
   id,
+  text,
+  points,
   onPress,
 }) => (
   <View style={styles.container}>
     <TouchableOpacity onPress={onPress}>
-      <Text style={styles.text}>{id}</Text>
+      <Text style={styles.text}>id: {id}</Text>
+      <Text style={styles.text}>text: {text}</Text>
+      <Text style={styles.text}>points: {points}</Text>
     </TouchableOpacity>
   </View>
 )
@@ -26,4 +32,4 @@ const styles = StyleSheet.create({
   } as TextStyle,
 })
 
-export default AllDrinksListItem
+export default AllSungsListItem

@@ -9,6 +9,7 @@ import { ApolloProvider } from 'react-apollo'
 import createApolloClient from 'storm-system-components/src/apollo'
 import AllCharactersList from './modules/characters/containers/AllCharactersList'
 import SingleCharacterScreen from './modules/characters/screens/SingleCharacter'
+import MyForm from './components/form'
 
 const BROCHALLENGE_DEV = 'http://localhost:60000/relay/v1/cjbif011e000201887rzszrtr'
 // const BROCHALLENGE_STAGING = 'https://api.graph.cool/relay/v1/cjbi3txqv0reu0121coxa0nsa'
@@ -29,7 +30,8 @@ export class App extends Component<{}, {}> {
       <ApolloProvider client={apolloClient}>
         <View style={styles.container}>
           {/* <AllCharactersList /> */}
-          <SingleCharacterScreen />
+          {/* <SingleCharacterScreen /> */}
+          <MyForm />
         </View>
       </ApolloProvider>
     )

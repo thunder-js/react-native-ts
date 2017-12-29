@@ -1,24 +1,26 @@
 import * as React from 'react'
 import { View, FlatList, StyleSheet, ViewStyle } from 'react-native'
 import { IFetchState, IFetchActions } from 'common-data/artifacts/hocs'
-import AllDrinksListItem from '../AllDrinksListItem'
+import AllSungsListItem from '../AllSungsListItem'
 
 export interface IEntity {
   id: string;
+  text?: string;
+  points?: number;
 }
-export interface IAllDrinksListProps {
-  allDrinks: IEntity[];
+export interface IAllSungsListProps {
+  allSungs: IEntity[];
   onPressItem: (item: IEntity) => void;
 }
 
-class AllDrinksList extends React.Component<IFetchActions & IFetchState & IAllDrinksListProps> {
+class AllSungsList extends React.Component<IFetchActions & IFetchState & IAllSungsListProps> {
   private keyExtractor = ({ id }) => id
 
   private renderItem = ({ item }) => {
     const { onPressItem } = this.props
 
     return (
-      <AllDrinksListItem
+      <AllSungsListItem
         onPress={() => onPressItem(item)}
         {...item}
       />
@@ -28,12 +30,12 @@ class AllDrinksList extends React.Component<IFetchActions & IFetchState & IAllDr
     const {
       fetchState,
       fetchActions,
-      allDrinks,
+      allSungs,
     } = this.props
     return (
       <View style={styles.container}>
         <FlatList
-          data={allDrinks}
+          data={allSungs}
           keyExtractor={this.keyExtractor}
           renderItem={this.renderItem}
           onRefresh={fetchActions.refetch}
@@ -50,4 +52,4 @@ const styles = StyleSheet.create({
   } as ViewStyle,
 })
 
-export default AllDrinksList
+export default AllSungsList

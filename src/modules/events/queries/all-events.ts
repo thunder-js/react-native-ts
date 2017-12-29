@@ -13,5 +13,4 @@ query allEvents {
       }
     }
   }
-}
-`
+}`

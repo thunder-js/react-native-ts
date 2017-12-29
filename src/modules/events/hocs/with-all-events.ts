@@ -4,9 +4,9 @@ import { allEventsQuery as IAllEventsQuery } from '../../../operation-result-typ
 import allEvents from '../queries/all-events';
 
 export interface IEvent {
-  id: string,
-  name: string,
-  location: string,
+  id: string;
+  name: string;
+  location: string;
 }
 
 export interface IWithAllEventsWrappedProps {

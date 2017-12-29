@@ -1,14 +1,13 @@
 import gql from 'graphql-tag'
 
 export default gql`
-query allDrinks {
-	viewer {
-    allDrinks {
+query allSungs {
+  viewer {
+    allSungs {
       edges {
         node {
           id
-          name
-          imageUrl
+          text
           points
         }
       }

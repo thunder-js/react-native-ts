@@ -1,11 +1,11 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react-native';
-import AllDrinksListItem from './'
+import AllSungsListItem from './'
 import { View } from 'react-native'
 
-storiesOf('AllDrinksListItem Component', module)
+storiesOf('AllSungsListItem Component', module)
   .add('default', () => (
-    <AllDrinksListItem
+    <AllSungsListItem
       id='1'
       onPress={() => {}}
     />
