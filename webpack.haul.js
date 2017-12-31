@@ -12,6 +12,7 @@ module.exports = ({ platform }, { module, resolve }) => ({
   },
   resolve: {
     ...resolve,
+    symlinks: false,
     extensions: [
       '.ts',
       '.tsx',
