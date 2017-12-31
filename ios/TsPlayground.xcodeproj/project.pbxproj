@@ -832,6 +832,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
+						DevelopmentTeam = WRM4UPAZ5R;
 						ProvisioningStyle = Manual;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
@@ -1611,7 +1612,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = WRM4UPAZ5R;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-code-push/ios/CodePush/**",
@@ -1628,7 +1629,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.thunder.tsplayground;
 				PRODUCT_NAME = TsPlayground;
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "c68a5951-1723-4824-b99d-ea2ad9a5fe33";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development com.thunder.tsplayground";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -1638,9 +1640,10 @@
 			baseConfigurationReference = EDE1715BA871ADE425504A5B /* Pods-TsPlayground.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = WRM4UPAZ5R;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-code-push/ios/CodePush/**",
@@ -1657,7 +1660,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.thunder.tsplayground;
 				PRODUCT_NAME = TsPlayground;
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "c063cf82-6e56-49c3-ba8a-b0ce17457464";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.thunder.tsplayground";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
